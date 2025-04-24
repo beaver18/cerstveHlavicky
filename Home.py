@@ -1,7 +1,12 @@
 import pandas as pd
 import asyncio
 from playwright.async_api import async_playwright
+import os
+from pathlib import Path
 
+# Nastavenie PLAYWRIGHT_BROWSERS_PATH na systémový priečinok (štandardne tam chromium bude)
+user_browsers_path = str(Path.home() / ".ms-playwright")
+os.environ["PLAYWRIGHT_BROWSERS_PATH"] = os.path.join(os.getenv("LOCALAPPDATA"), "ms-playwright")
 # Načítanie e-mailov z Excelu
 df = pd.read_excel("hlasovanie.xlsx")
 log = []
